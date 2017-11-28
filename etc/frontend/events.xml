@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+  <!--<event name="customer_register_success">
+      <observer name="frontend_customer_register" instance="Voicyou\Avatar\Observer\CustomerCreation"/>
+  </event>-->
+
+  <event name="customer_save_after">
+      <observer name="frontend_customer_register2" instance="Voicyou\Avatar\Observer\CustomerCreation"/>
+  </event>
+</config>
