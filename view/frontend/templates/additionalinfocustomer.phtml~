@@ -1,0 +1,11 @@
+    <fieldset class="fieldset create account" data-hasrequired="<?php /* @escapeNotVerified */ echo __('* Required Fields') ?>">
+        <legend class="legend"><span><?php /* @escapeNotVerified */ echo __('Additional Information') ?></span></legend><br>
+
+        <div class="field promotion_code required">
+            <label for="promotion_code" class="label"><span><?php /* @escapeNotVerified */ echo __('Promotion Code') ?></span></label>
+            <div class="control">
+                <input type="text" name="promotion_code" id="promotion_code" title="<?php /* @escapeNotVerified */ echo __('Password') ?>" class="input-text" data-validate="{required:true}" autocomplete="off">
+            </div>
+        </div>
+        </div>
+    </fieldset>
