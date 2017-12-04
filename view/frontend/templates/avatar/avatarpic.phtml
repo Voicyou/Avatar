@@ -1,0 +1,14 @@
+<!--
+/**
+ * Copyright © Voicyou Softwares 2017. All rights reserved.
+ */
+-->
+<fieldset class="fieldset create account">
+    <legend class="legend"><span><?php /* @escapeNotVerified */ echo __('Profile Avatar') ?></span></legend><br>
+    <?php $avatarInfo = $this->getAvatarInfo(); ?>
+    <?php if(!(empty($avatarInfo))) { ?>
+    <img src="<?php echo $this->getMediaUrl().'voicyouavatars/'.$avatarInfo['image_name']; ?>" width="100px" height="100px" />
+    <?php } else { ?>
+    <img src="<?php echo $this->getViewFileUrl('Voicyou_Avatar::images/default_avatar.png'); ?>" width="100px" height="100px" />
+    <?php } ?>
+</fieldset>

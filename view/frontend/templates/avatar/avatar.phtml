@@ -1,11 +1,19 @@
-    <fieldset class="fieldset create account">
-        <legend class="legend"><span><?php /* @escapeNotVerified */ echo __('Profile Picture') ?></span></legend><br>
-
-        <div class="field promotion_code">
-            <label for="customer_avatar" class="label"><span><?php /* @escapeNotVerified */ echo __('Avatar') ?></span></label>
-            <div class="control">
-                <input type="file" name="customer_avatar" id="customer_avatar" />
-            </div>
+<!--
+/**
+ * Copyright © Voicyou Softwares 2017. All rights reserved.
+ */
+-->
+<fieldset class="fieldset create account">
+    <legend class="legend"><span><?php /* @escapeNotVerified */ echo __('Profile Picture') ?></span></legend><br>
+    <div class="field promotion_code">
+        <?php $avatarInfo = $this->getAvatarInfo(); ?>
+        <?php if(!(empty($avatarInfo))) { ?>
+        <img src="<?php echo $this->getMediaUrl().'voicyouavatars/'.$avatarInfo['image_name']; ?>" width="100px" height="100px" />
+        <?php } else { ?>
+        <img src="<?php echo $this->getViewFileUrl('Voicyou_Avatar::images/default_avatar.png'); ?>" width="100px" height="100px" />
+        <?php } ?>
+        <div class="control">
+            <input type="file" name="customer_avatar" id="customer_avatar" />
         </div>
-        
-    </fieldset>
+    </div>  
+</fieldset>
