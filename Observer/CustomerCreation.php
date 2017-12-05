@@ -125,7 +125,7 @@ class CustomerCreation implements ObserverInterface
         try{
             $voicyouAvatarImages = $this->fileSystem->getDirectoryRead(\Magento\Framework\App\Filesystem\DirectoryList::MEDIA)->getAbsolutePath('voicyouavatars/');
             $this->file->checkAndCreateFolder($voicyouAvatarImages);
-            if ($_FILES['customer_avatar']['error'] > 0 ){
+            if ($_FILES['customer_avatar']['error'] == 0 ){
                 $ext = pathinfo($_FILES['customer_avatar']['name'], PATHINFO_EXTENSION);
                 if($ext == 'png' || $ext == 'jpg' || $ext == 'jpeg'){
                     $avatarName   = $observer->getEvent()->getCustomer()->getId().".".$ext;
