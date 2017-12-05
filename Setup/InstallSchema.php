@@ -2,7 +2,7 @@
 /**
  * Copyright © 2017 Voicyou Softwares . All rights reserved.
  */
-namespace Sourabh\CustomerApprove\Setup;
+namespace Voicyou\Avatar\Setup;
 
 use Magento\Framework\Setup\InstallSchemaInterface;
 use Magento\Framework\Setup\ModuleContextInterface;
