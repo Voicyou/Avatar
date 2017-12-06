@@ -2,8 +2,7 @@
   "name": "voicyou/avatar",
   "description": "This is a Magento 2 Module for adding the Customer Avatar (Profile Picture) functionality.",
   "require": {
-    "php": "~5.5.0|~5.6.0|~7.0.0|~7.1.0",
-    "voicyou/menuoptions":"~1.0.0"
+    "php": "~5.5.0|~5.6.0|~7.0.0|~7.1.0"
   },
   "type": "magento2-module",
   "version":"1.0.0",
