@@ -62,12 +62,6 @@ class CustomerCreation implements ObserverInterface
      * @var \Magento\Framework\Filesystem\Io\File 
      */
     protected $file;
-
-    /**
-     *
-     * @var \Psr\Log\LoggerInterface 
-     */
-    protected $logger;
     
     /**
      *
@@ -83,7 +77,6 @@ class CustomerCreation implements ObserverInterface
      * @param \Magento\MediaStorage\Model\File\UploaderFactory $uploader
      * @param \Magento\Framework\Filesystem $fileSystem
      * @param \Magento\Framework\Filesystem\Io\File $file
-     * @param \Psr\Log\LoggerInterface $logger
      * @param \Voicyou\Avatar\Model\AddCustomerAvatarFactory $addCustomerAvatarFactory
      */
     public function __construct(
@@ -93,7 +86,6 @@ class CustomerCreation implements ObserverInterface
         \Magento\MediaStorage\Model\File\UploaderFactory $uploader,
         \Magento\Framework\Filesystem $fileSystem,
         \Magento\Framework\Filesystem\Io\File $file,
-        \Psr\Log\LoggerInterface $logger,
         \Voicyou\Avatar\Model\AddCustomerAvatarFactory $addCustomerAvatarFactory
     ) {
         $this->context = $context;
@@ -104,7 +96,6 @@ class CustomerCreation implements ObserverInterface
         $this->uploader = $uploader;
         $this->fileSystem = $fileSystem;
         $this->file = $file;
-        $this->logger = $logger;
         $this->addCustomerAvatarFactory = $addCustomerAvatarFactory;
     }
 
