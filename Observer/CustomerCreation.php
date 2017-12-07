@@ -125,21 +125,21 @@ class CustomerCreation implements ObserverInterface
         try{
             $voicyouAvatarImages = $this->fileSystem->getDirectoryRead(\Magento\Framework\App\Filesystem\DirectoryList::MEDIA)->getAbsolutePath('voicyouavatars/');
             $this->file->checkAndCreateFolder($voicyouAvatarImages);
-            if ($_FILES['customer_avatar']['error'] == 0 ){
-                $ext = pathinfo($_FILES['customer_avatar']['name'], PATHINFO_EXTENSION);
-                if($ext == 'png' || $ext == 'jpg' || $ext == 'jpeg'){
-                    $avatarName   = $observer->getEvent()->getCustomer()->getId().".".$ext;
-                    move_uploaded_file($_FILES['customer_avatar']['tmp_name'], $voicyouAvatarImages."/".$avatarName);
-                    $customerData = $this->addCustomerAvatarFactory->create()->load($observer->getEvent()->getCustomer()->getId(),'customer_id');
-                    if(empty($customerData->getData()))
-                    {
-                        $customerData = $this->addCustomerAvatarFactory->create();
-                    }
-                    $customerData->setCustomerId($observer->getEvent()->getCustomer()->getId());
-                    $customerData->setImageName($avatarName);
-                    $customerData->save();
-                }
+            $uploader = $this->uploader->create(['fileId' => 'customer_avatar']);
+            $uploader->setAllowedExtensions(['jpg', 'jpeg', 'gif', 'png']);
+            $uploader->setAllowRenameFiles(false);
+            $uploader->setFilesDispersion(false);
+            $ext = $uploader->getFileExtension();
+            $avatarName = $observer->getEvent()->getCustomer()->getId().".".$ext;
+            $uploader->save($voicyouAvatarImages,$avatarName);
+            $customerData = $this->addCustomerAvatarFactory->create()->load($observer->getEvent()->getCustomer()->getId(),'customer_id');
+            if(empty($customerData->getData()))
+            {
+                $customerData = $this->addCustomerAvatarFactory->create();
             }
+            $customerData->setCustomerId($observer->getEvent()->getCustomer()->getId());
+            $customerData->setImageName($avatarName);
+            $customerData->save();
         }
         catch(\Exception $e)
         {
