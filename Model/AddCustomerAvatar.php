@@ -17,4 +17,3 @@ class AddCustomerAvatar extends \Magento\Framework\Model\AbstractModel
         $this->_init('Voicyou\Avatar\Model\ResourceModel\AddCustomerAvatar');
     }
 }
-?>
