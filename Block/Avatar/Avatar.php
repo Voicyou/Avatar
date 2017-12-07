@@ -11,12 +11,11 @@ namespace Voicyou\Avatar\Block\Avatar;
  */
 class Avatar extends \Magento\Framework\View\Element\Template
 {
-
     /**
      *
-     * @var \Magento\Framework\UrlInterface
+     * @var \Magento\Framework\View\Element\Template\Contex
      */
-    protected $urlInterface;
+    protected $context;
 
     /**
      *
@@ -31,32 +30,21 @@ class Avatar extends \Magento\Framework\View\Element\Template
     protected $addCustomerAvatar;
     
     /**
-     *
-     * @var \Magento\Store\Model\StoreManagerInterface 
-     */
-    protected $storeManagerInterface;
-    
-    /**
      * 
      * @param \Magento\Framework\View\Element\Template\Context $context
-     * @param \Magento\Framework\UrlInterface $urlInterface
      * @param \Magento\Customer\Model\Session $customerSession
      * @param \Voicyou\Avatar\Model\AddCustomerAvatar $addCustomerAvatar
-     * @param \Magento\Store\Model\StoreManagerInterface $storeManagerInterface
      * @param array $data
      */
     public function __construct(
         \Magento\Framework\View\Element\Template\Context $context,
-        \Magento\Framework\UrlInterface $urlInterface,
         \Magento\Customer\Model\Session $customerSession,
         \Voicyou\Avatar\Model\AddCustomerAvatar $addCustomerAvatar,
-        \Magento\Store\Model\StoreManagerInterface $storeManagerInterface,
         $data = []
     ) {
-        $this->urlInterface = $urlInterface;
+        $this->context = $context;
         $this->customerSession = $customerSession;
         $this->addCustomerAvatar = $addCustomerAvatar;
-        $this->storeManagerInterface = $storeManagerInterface;
         parent::__construct($context, $data = []);
     }
 
@@ -85,6 +73,6 @@ class Avatar extends \Magento\Framework\View\Element\Template
      */
     public function getMediaUrl()
     {
-        return $this->storeManagerInterface->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);;
+        return $this->context->getStoreManager()->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);;
     }
 }
