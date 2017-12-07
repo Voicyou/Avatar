@@ -44,13 +44,7 @@ class CustomerCreation implements ObserverInterface
      * @var \Magento\Customer\Model\CustomerFactory 
      */
     protected $customerFactory;
-    
-    /**
-     *
-     * @var \Magento\Framework\App\RequestInterface 
-     */
-    protected $request;
-    
+
     /**
      *
      * @var \Magento\MediaStorage\Model\File\UploaderFactory 
@@ -86,7 +80,6 @@ class CustomerCreation implements ObserverInterface
      * @param \Magento\Framework\View\Element\Context $context
      * @param \Magento\Framework\ObjectManagerInterface $objectManager
      * @param \Magento\Customer\Model\CustomerFactory $customerFactory
-     * @param \Magento\Framework\App\RequestInterface $request
      * @param \Magento\MediaStorage\Model\File\UploaderFactory $uploader
      * @param \Magento\Framework\Filesystem $fileSystem
      * @param \Magento\Framework\Filesystem\Io\File $file
@@ -97,18 +90,17 @@ class CustomerCreation implements ObserverInterface
         \Magento\Framework\View\Element\Context $context,
         \Magento\Framework\ObjectManagerInterface $objectManager,
         \Magento\Customer\Model\CustomerFactory $customerFactory,
-        \Magento\Framework\App\RequestInterface $request,
         \Magento\MediaStorage\Model\File\UploaderFactory $uploader,
         \Magento\Framework\Filesystem $fileSystem,
         \Magento\Framework\Filesystem\Io\File $file,
         \Psr\Log\LoggerInterface $logger,
         \Voicyou\Avatar\Model\AddCustomerAvatarFactory $addCustomerAvatarFactory
     ) {
+        $this->context = $context;
         $this->_layout = $context->getLayout();
         $this->_request = $context->getRequest();
         $this->_objectManager = $objectManager;
         $this->customerFactory = $customerFactory;
-        $this->request  = $request;
         $this->uploader = $uploader;
         $this->fileSystem = $fileSystem;
         $this->file = $file;
@@ -143,7 +135,7 @@ class CustomerCreation implements ObserverInterface
         }
         catch(\Exception $e)
         {
-            $this->logger->critical($e->getMessage());
+            $this->context->getLogger()->critical($e->getMessage());
         }
     }
 }
